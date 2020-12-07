@@ -1,0 +1,42 @@
+{
+  "name": "what-the-currency",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Dominic Kolbe <kolbedominic@gmail.com>",
+  "repository": "git@github.com:dominickolbe/what-the-currency.git",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "prettier-check": "prettier --check src/"
+  },
+  "dependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.1",
+    "typescript": "^4.1.2"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.10",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "prettier": "^2.2.1"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
