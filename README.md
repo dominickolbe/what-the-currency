@@ -1,5 +1,15 @@
 # what-the-currency
 
+### Preview
+
+[see live version here](https://what-the-currency.vercel.app)
+
+The current production build is served by [vercel.com](https://vercel.com)
+
+```http
+https://what-the-currency.vercel.app
+```
+
 ## Getting Started
 
 ### Prerequisites
