@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createErr, createOk } from "option-t/cjs/PlainResult";
-import { EXCHANGE_API } from "../../contstants";
+import { EXCHANGE_API, EXCHANGE_API_KEY } from "../../contstants";
 import { RtExchangeRatesResponse } from "../../models/runtypes";
 import { LocalStorageController } from "../../utils";
 
@@ -11,7 +11,7 @@ export const ApiController = {
   get: {
     exchangerates: async () => {
       try {
-        const cache = LocalStorageController.get("EXCHANGE_API_RESPONSE");
+        const cache = LocalStorageController.get(EXCHANGE_API_KEY);
         if (cache.ok) return createOk(cache.val);
 
         const response = await axios.get(
@@ -19,7 +19,7 @@ export const ApiController = {
         );
         const result = RtExchangeRatesResponse.check(response.data);
 
-        LocalStorageController.set("EXCHANGE_API_RESPONSE", result);
+        LocalStorageController.set(EXCHANGE_API_KEY, result);
 
         return createOk(result);
       } catch (error) {
