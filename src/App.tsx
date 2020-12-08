@@ -1,8 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
+import Container from "@material-ui/core/Container";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import FormControl from "@material-ui/core/FormControl";
+import Grid from "@material-ui/core/Grid";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import InputLabel from "@material-ui/core/InputLabel";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import Paper from "@material-ui/core/Paper";
+import { ThemeProvider } from "@material-ui/core/styles";
 import React, { useEffect, useState } from "react";
 import { ApiController } from "./components/ApiController";
 import { ExchangeRatesResponseType } from "./models/types";
+import { theme } from "./theme";
 
 export const App = () => {
   const [
@@ -10,8 +20,9 @@ export const App = () => {
     setExchangeRateData,
   ] = useState<ExchangeRatesResponseType | null>(null);
 
-  const [currency1, setCurrency1] = useState(0);
-  const [currency2, setCurrency2] = useState(0);
+  const [currency_EUR, setCurrency_EUR] = useState(0);
+  const [currency_GBP, setCurrency_GBP] = useState(0);
+  const [currency_USD, setCurrency_USD] = useState(0);
 
   const abortCtrl = new AbortController();
 
@@ -32,30 +43,76 @@ export const App = () => {
   if (exchangeRateData === null) return <div>Loading ...</div>;
 
   return (
-    <div>
-      <label>EUR</label>
-      <input
-        type="text"
-        value={currency1}
-        onChange={(e) => {
-          const value = parseFloat(e.target.value || "0");
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
 
-          setCurrency1(value);
-          setCurrency2(value * exchangeRateData.rates.GBP);
-        }}
-      />
-      <div>to</div>
-      <label>GBP</label>
-      <input
-        type="text"
-        value={currency2}
-        onChange={(e) => {
-          const value = parseFloat(e.target.value || "0");
-
-          setCurrency2(value);
-          setCurrency1(value / exchangeRateData.rates.GBP);
-        }}
-      />
-    </div>
+      <Container
+        maxWidth="sm"
+        style={{ marginTop: "50px", marginBottom: "50px" }}
+      >
+        <Paper elevation={2}>
+          <Grid container spacing={4}>
+            <Grid item xs={12}>
+              <FormControl fullWidth variant="outlined">
+                <InputLabel>EUR</InputLabel>
+                <OutlinedInput
+                  value={currency_EUR}
+                  startAdornment={
+                    <InputAdornment position="start">€</InputAdornment>
+                  }
+                  labelWidth={60}
+                  onChange={(e) => {
+                    const value = parseFloat(e.target.value || "0");
+                    setCurrency_EUR(value);
+                    setCurrency_GBP(value * exchangeRateData.rates.GBP);
+                    setCurrency_USD(value * exchangeRateData.rates.USD);
+                  }}
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={12}>
+              <FormControl fullWidth variant="outlined">
+                <InputLabel>GBP</InputLabel>
+                <OutlinedInput
+                  value={currency_GBP}
+                  startAdornment={
+                    <InputAdornment position="start">£</InputAdornment>
+                  }
+                  labelWidth={60}
+                  onChange={(e) => {
+                    const value_GBP = parseFloat(e.target.value || "0");
+                    const value_EUR = value_GBP / exchangeRateData.rates.GBP;
+                    const value_USD = value_EUR * exchangeRateData.rates.USD;
+                    setCurrency_GBP(value_GBP);
+                    setCurrency_EUR(value_EUR);
+                    setCurrency_USD(value_USD);
+                  }}
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={12}>
+              <FormControl fullWidth variant="outlined">
+                <InputLabel>USD</InputLabel>
+                <OutlinedInput
+                  value={currency_USD}
+                  startAdornment={
+                    <InputAdornment position="start">$</InputAdornment>
+                  }
+                  labelWidth={60}
+                  onChange={(e) => {
+                    const value_USD = parseFloat(e.target.value || "0");
+                    const value_EUR = value_USD / exchangeRateData.rates.USD;
+                    const value_GBP = value_EUR * exchangeRateData.rates.GBP;
+                    setCurrency_USD(value_USD);
+                    setCurrency_EUR(value_EUR);
+                    setCurrency_GBP(value_GBP);
+                  }}
+                />
+              </FormControl>
+            </Grid>
+          </Grid>
+        </Paper>
+      </Container>
+    </ThemeProvider>
   );
 };
