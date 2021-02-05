@@ -62,6 +62,6 @@ yarn prettier-check
 
 ---
 
-### License
+## LICENSE
 
-Copyright (c) 2020 [Dominic Kolbe](https://dominickolbe.dk)
+Copyright © 2021 [Dominic Kolbe](https://dominickolbe.dk) :de:
