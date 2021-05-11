@@ -16,10 +16,10 @@ https://what-the-currency.vercel.app
 
 I build this project with the following setup:
 
-- macOS Big Sur version 11.1 Beta
-- node v15.3.0
-- npm v7.0.14
-- yarn v1.22.5
+- macOS Big Sur version 11.4 Beta
+- node v14.16.1
+- npm v6.14.12
+- yarn v1.22.10
 - [nvm - Node Version Manager](https://github.com/nvm-sh/nvm)
 
 ## Development
@@ -64,4 +64,4 @@ yarn prettier-check
 
 ### License
 
-Copyright (c) 2020 [Dominic Kolbe](https://dominickolbe.dk)
+Copyright (c) 2021 [Dominic Kolbe](https://dominickolbe.dk)
