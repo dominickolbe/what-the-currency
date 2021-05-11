@@ -57,7 +57,7 @@ yarn build
 1. check project with prettier
 
 ```bash
-yarn prettier-check
+yarn prettier:check
 ```
 
 ---
