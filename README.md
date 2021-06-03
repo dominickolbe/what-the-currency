@@ -1,5 +1,7 @@
 # what-the-currency
 
+-> unfortunately is the API used in this project not longer working as expected :(
+
 ### Preview
 
 [see live version here](https://what-the-currency.vercel.app)
